@@ -237,18 +237,18 @@ document.addEventListener('DOMContentLoaded', function() {
         position: fixed;
         bottom: 30px;
         right: 30px;
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+        background: #c9a96e;
         color: white;
         border: none;
         cursor: pointer;
         display: none;
         z-index: 999;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease;
-        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(201,169,110,.35);
+        transition: all 0.2s ease;
+        font-size: 1rem;
     `;
 
     document.body.appendChild(scrollBtn);
@@ -332,9 +332,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (bookingForm) {
         const dateInput = bookingForm.querySelector('input[name="appointment_date"]');
 
-        // Set min date to today
+        // Set min date to today (dùng local date, không dùng toISOString() vì trả về UTC)
         if (dateInput) {
-            const today = new Date().toISOString().split('T')[0];
+            const _n = new Date();
+            const today = `${_n.getFullYear()}-${String(_n.getMonth()+1).padStart(2,'0')}-${String(_n.getDate()).padStart(2,'0')}`;
             dateInput.setAttribute('min', today);
         }
     }
